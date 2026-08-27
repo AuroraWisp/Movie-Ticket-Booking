@@ -1,0 +1,114 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a0f2e, #3a1c71, #d76d77);
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    min-height: 100vh;
+}
+
+.center-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(17, 17, 17, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+h1, h2, h3 { color: #ccff90; margin-bottom: 15px; }
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 80%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background-color: #222;
+    color: #fff;
+    font-size: 16px;
+}
+
+.btn, .action-btn, .logout-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn:hover, .action-btn:hover { background-color: #b80710; }
+.secondary-btn { background-color: #555; }
+.secondary-btn:hover { background-color: #333; }
+
+.ad-banner {
+    background: linear-gradient(135deg, #2e7d32, #66bb6a);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.discount-ad {
+    background-color: #ff9800;
+    color: #111;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.movie-item {
+    display: block;
+    background: #222;
+    color: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+.movie-item:hover { background: #2e7d32; }
+
+.cinema-screen {
+    background: #fff;
+    color: #000;
+    font-weight: bold;
+    padding: 5px;
+    margin: 20px auto;
+    width: 80%;
+    letter-spacing: 4px;
+}
+
+.seat-row { display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; }
+.seat {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}
+.seat.free { background-color: #4caf50; color: white; }
+.seat.free.selected { background-color: #2196f3; }
+.seat.booked { background-color: #f44336; color: white; cursor: not-allowed; }
+
+.error-msg { color: #ff5252; margin-top: 10px; }
+.footer-link { margin-top: 15px; }
+.footer-link a { color: #ccff90; }

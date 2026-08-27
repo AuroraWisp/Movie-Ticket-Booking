@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Seats</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2 id="movie-title">Select Your Seats</h2>
+
+        <p id="seat-error" class="error-msg"></p>
+        <div class="cinema-screen">SCREEN</div>
+
+        <div id="seat-grid"></div>
+
+        <div style="margin-top: 25px;">
+            <button onclick="proceedToPayment()" class="btn action-btn">Proceed to Payment</button>
+            <a href="movies.html" class="btn secondary-btn" style="margin-left: 10px;">Back to Movies</a>
+        </div>
+    </div>
+
+    <script>
+        if (!localStorage.getItem('currentUser')) window.location.href = 'index.html';
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get('id') || '1';
+        
+        const movies = {
+            '1': { title: 'Interstellar' },
+            '2': { title: 'The Dark Knight' },
+            '3': { title: 'Inception' }
+        };
+        
+        const currentMovie = movies[movieId] || { title: 'Movie' };
+        document.getElementById('movie-title').innerText = `Select Seats for "${currentMovie.title}"`;
+
+        const rows = ['A', 'B', 'C', 'D', 'E'];
+        let bookedSeats = JSON.parse(localStorage.getItem(`booked_movie_${movieId}`)) || ['A1', 'B3'];
+        let selectedSeats = [];
+
+        const grid = document.getElementById('seat-grid');
+        rows.forEach(r => {
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'seat-row';
+            for (let i = 1; i <= 6; i++) {
+                const seatNo = `${r}${i}`;
+                const seatSpan = document.createElement('span');
+                seatSpan.innerText = seatNo;
+
+                if (bookedSeats.includes(seatNo)) {
+                    seatSpan.className = 'seat booked';
+                } else {
+                    seatSpan.className = 'seat free';
+                    seatSpan.onclick = () => toggleSeat(seatSpan, seatNo);
+                }
+                rowDiv.appendChild(seatSpan);
+            }
+            grid.appendChild(rowDiv);
+        });
+
+        function toggleSeat(element, seatNo) {
+            document.getElementById('seat-error').innerText = '';
+            if (selectedSeats.includes(seatNo)) {
+                selectedSeats = selectedSeats.filter(s => s !== seatNo);
+                element.classList.remove('selected');
+            } else {
+                selectedSeats.push(seatNo);
+                element.classList.add('selected');
+            }
+        }
+
+        function proceedToPayment() {
+            if (selectedSeats.length === 0) {
+                document.getElementById('seat-error').innerText = 'Please select at least one seat to proceed.';
+                return;
+            }
+
+            const querySeats = encodeURIComponent(selectedSeats.join(','));
+            window.location.href = `payment.html?movie_id=${movieId}&seats=${querySeats}`;
+        }
+    </script>
+</body>
+</html>

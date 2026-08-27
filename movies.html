@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Movie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container movies-container">
+        <h1>Select Movie</h1>
+
+        <div class="ad-banner">
+            <div class="ad-text">
+                <h3>🔥 Upcoming Movie 🔥</h3>
+                <p><strong>Movie:</strong> Inception</p>
+                <p><strong>Release Date:</strong> 1 May 2026</p>
+            </div>
+        </div>
+
+        <div id="movie-list" class="movie-list"></div>
+
+        <div class="logout-container">
+            <button onclick="logout()" class="logout-btn">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        // Check Session
+        if (!localStorage.getItem('currentUser')) {
+            window.location.href = 'index.html';
+        }
+
+        const movies = [
+            { id: 1, title: 'Interstellar', show_time: '06:00 PM', genre: 'Sci-Fi', duration: '2h 49m', price: 250 },
+            { id: 2, title: 'The Dark Knight', show_time: '09:00 PM', genre: 'Action', duration: '2h 32m', price: 220 },
+            { id: 3, title: 'Inception', show_time: '03:00 PM', genre: 'Sci-Fi', duration: '2h 28m', price: 200 }
+        ];
+
+        const listContainer = document.getElementById('movie-list');
+        movies.forEach(m => {
+            const item = document.createElement('a');
+            item.className = 'movie-item';
+            item.href = `seats.html?id=${m.id}`;
+            item.innerHTML = `🎬 ${m.title} | 🕒 ${m.show_time} | 🎭 ${m.genre} | ⏱️ ${m.duration} | 💵 Tk ${m.price}`;
+            listContainer.appendChild(item);
+        });
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
