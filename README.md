@@ -18,10 +18,10 @@ A lightweight, modern, and responsive web-based Movie Booking System.
 
 ```text
 movie-booking/
-├── index.html      # Landing page & user login/registration[cite: 2, 3, 7]
-├── movies.html     # Movie dashboard and selection list[cite: 5]
-├── seats.html      # Interactive cinema seat picker grid[cite: 8]
-├── payment.html    # Order summary and payment checkout[cite: 6]
+├── index.html      # Landing page & user login/registration
+├── movies.html     # Movie dashboard and selection list
+├── seats.html      # Interactive cinema seat picker grid
+├── payment.html    # Order summary and payment checkout
 ├── success.html    # Final ticket receipt with print/exit options
 ├── style.css       # Main stylesheet for UI/UX branding
 └── README.md       # Project documentation
