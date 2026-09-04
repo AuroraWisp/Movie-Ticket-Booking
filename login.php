@@ -1,5 +1,5 @@
 <?php
-require_once "config/db.php";
+require_once "db.php";
 session_start();
 
 if (isset($_SESSION['user_id'])) {
@@ -10,7 +10,6 @@ if (isset($_SESSION['user_id'])) {
 $error = "";
 $success = "";
 
-// Check for registration success message
 if (isset($_SESSION['success_message'])) {
     $success = $_SESSION['success_message'];
     unset($_SESSION['success_message']);
@@ -44,8 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Movie Booking System</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>CineVerse</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         .auth-card {
             background-color: #1e293b;
@@ -124,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <div class="auth-card">
-    <h2 style="margin-bottom: 20px;">Welcome Back</h2>
+    <h2 style="margin-bottom: 20px;">Welcome!!!</h2>
 
     <?php if ($success): ?>
         <p class="success-msg"><?= htmlspecialchars($success) ?></p>
