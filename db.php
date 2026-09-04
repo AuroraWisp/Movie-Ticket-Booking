@@ -1,7 +1,13 @@
 <?php
-$conn = mysqli_connect("localhost","root","","movie_booking");
+$host = "localhost";
+$dbname = "cinema_db";
+$username = "root";
+$password = "";
 
-if(!$conn){
-    die("Database Connection Failed: " . mysqli_connect_error());
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Database Connection Failed: " . $e->getMessage());
 }
 ?>
