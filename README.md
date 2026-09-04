@@ -6,10 +6,10 @@ A secure, lightweight, modern, and responsive Web Application built with PHP and
 
 ## 📌 Features
 
-* **Authentication System**: User registration and login powered.
+* **User Authentication**: User registration and login session management.
 * **Dynamic Movie Selection**: Browse available movie titles, showtimes, genres and pricing.
 * **Interactive Seat Picker**: Live seat grid allowing multi-seat selection with real-time status updates (Free, Selected, Booked).
-* **Secure-Style Payment Interface**: Card length validation with instant transaction breakdown.
+* **Booking & Payment Processing**: Secure booking handling that records reserved seats per user, movie, date, and time slot.
 
 ---
 
@@ -28,12 +28,9 @@ Ensure you have the following installed on your environment:
 
 ```text
 movie_booking/
-├── config/
-│   └── db.php            # Database connection configuration
-├── css/
-│   └── style.css         # Main stylesheet for UI layout and themes
-├── database/
-│   └── schema.sql        # MySQL database schema and initial data
+├── db.php                # Database connection configuration
+├── style.css             # Main stylesheet for UI layout and themes
+├── schema.sql            # MySQL database schema and initial data
 ├── index.php             # Landing / welcome page
 ├── login.php             # User authentication (Login)
 ├── register.php          # User registration
