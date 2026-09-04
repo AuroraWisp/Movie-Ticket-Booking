@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// If the user is already logged in, redirect straight to the movies selection page
 if (isset($_SESSION['user_id'])) {
     header("Location: movies.php");
     exit();
@@ -12,8 +11,8 @@ if (isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Booking System</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Cineverse</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         .welcome-card {
             background-color: #1e293b;
@@ -64,8 +63,8 @@ if (isset($_SESSION['user_id'])) {
 <body>
 
     <div class="welcome-card">
-        <h1>🎬 Movie Booking System</h1>
-        <p>Book your favorite movies quickly and easily!</p>
+        <h1>🎬 CineVerse 🎬</h1>
+        <p>✨ Book your favorite movies quickly and easily ✨</p>
         <a href="login.php" class="enter-btn">Enter System</a>
     </div>
 
