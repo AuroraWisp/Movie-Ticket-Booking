@@ -1,4 +1,4 @@
-# 🎬 Movie-Ticket-Booking
+# 🎬 CineVerse 🎬
 
 A secure, lightweight, modern, and responsive Web Application built with PHP and MySQL for booking movie tickets online.
 
