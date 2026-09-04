@@ -1,5 +1,5 @@
 <?php
-require_once "config/db.php";
+require_once "db.php";
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
@@ -7,7 +7,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Fetch all movies and their assigned showtimes
 $stmt = $pdo->query("
     SELECT m.id AS movie_id, m.title, m.genre, m.duration_min, s.show_date, s.showtime
     FROM movies m
@@ -16,7 +15,6 @@ $stmt = $pdo->query("
 ");
 $raw_schedules = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Group showtimes under each movie
 $movies = [];
 foreach ($raw_schedules as $row) {
     $m_id = $row['movie_id'];
@@ -40,8 +38,8 @@ foreach ($raw_schedules as $row) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies & Showtimes - Cinema System</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>CineVerse</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         .header-bar {
             display: flex;
@@ -125,6 +123,7 @@ foreach ($raw_schedules as $row) {
 
         .logout-btn {
             color: #f87171;
+
             text-decoration: none;
         }
     </style>
