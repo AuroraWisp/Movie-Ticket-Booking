@@ -1,5 +1,5 @@
 <?php
-require_once "config/db.php";
+require_once "db.php";
 session_start();
 
 if (isset($_SESSION['user_id'])) {
@@ -24,19 +24,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (strlen($password) < 6) {
         $error = "Password must be at least 6 characters long.";
     } else {
-        // Check if email already exists
         $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->execute([$email]);
 
         if ($stmt->fetch()) {
             $error = "An account with this email already exists.";
         } else {
-            // Hash password and insert user
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $insert_stmt = $pdo->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
             
             if ($insert_stmt->execute([$name, $email, $hashed_password])) {
-                // Set success message in session and redirect to login page
                 $_SESSION['success_message'] = "Registration successful! Please log in with your credentials.";
                 header("Location: login.php");
                 exit();
@@ -52,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Movie Booking System</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>CineVerse</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         .auth-card {
             background-color: #1e293b;
@@ -131,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="post" action="register.php">
         <div class="form-group">
             <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" required placeholder="John Doe" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>">
+            <input type="text" id="name" name="name" required placeholder="your name" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>">
         </div>
 
         <div class="form-group">
