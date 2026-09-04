@@ -1,114 +1,105 @@
+/* Body */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #1a0f2e, #3a1c71, #d76d77);
     margin: 0;
     padding: 0;
     color: #fff;
-    min-height: 100vh;
 }
 
-.center-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.container {
-    width: 90%;
-    max-width: 650px;
-    margin: 40px auto;
+/* Movies Container */
+.movies-container {
+    width: 700px;
+    max-width: 95%;
+    margin: 50px auto;
     padding: 30px;
-    background: rgba(17, 17, 17, 0.95);
+    background: #111; /* dark for contrast */
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
     text-align: center;
-    box-sizing: border-box;
 }
 
-h1, h2, h3 { color: #ccff90; margin-bottom: 15px; }
-
-input[type="text"], input[type="email"], input[type="password"] {
-    width: 80%;
-    padding: 12px;
-    margin: 8px 0;
-    border-radius: 6px;
-    border: 1px solid #444;
-    background-color: #222;
-    color: #fff;
-    font-size: 16px;
+/* Heading */
+h2 {
+    color: #ccff90;
+    margin-bottom: 20px;
 }
-
-.btn, .action-btn, .logout-btn {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: #e50914;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.btn:hover, .action-btn:hover { background-color: #b80710; }
-.secondary-btn { background-color: #555; }
-.secondary-btn:hover { background-color: #333; }
 
 .ad-banner {
-    background: linear-gradient(135deg, #2e7d32, #66bb6a);
-    padding: 15px;
-    border-radius: 8px;
+    background: linear-gradient(135deg, #2e7d32, #66bb6a); /* Green gradient */
+    padding: 20px;
+    border-radius: 10px;
     margin-bottom: 20px;
+    text-align: center;
+    color: #fff;
 }
 
-.discount-ad {
-    background-color: #ff9800;
-    color: #111;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 20px;
+.ad-text h3 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+}
+
+.ad-text p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.book-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #2e7d32;
     font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
+.book-btn:hover {
+    background-color: #c8e6c9;
+    color: #1b5e20;
+}/* Movie List Items */
 .movie-item {
     display: block;
     background: #222;
     color: #fff;
-    padding: 15px;
+    padding: 12px;
     margin: 10px 0;
     border-radius: 6px;
     text-decoration: none;
-    transition: background 0.3s;
-}
-.movie-item:hover { background: #2e7d32; }
-
-.cinema-screen {
-    background: #fff;
-    color: #000;
-    font-weight: bold;
-    padding: 5px;
-    margin: 20px auto;
-    width: 80%;
-    letter-spacing: 4px;
+    transition: 0.3s;
 }
 
-.seat-row { display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; }
-.seat {
+.movie-item:hover {
+    background: #33a047;
+    color: #fff;
+}
+
+/* Logout Button */
+.logout-container {
+    margin-top: 20px;
+}
+
+.logout-btn {
     display: inline-block;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    user-select: none;
+    background-color: #f44336;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s;
 }
-.seat.free { background-color: #4caf50; color: white; }
-.seat.free.selected { background-color: #2196f3; }
-.seat.booked { background-color: #f44336; color: white; cursor: not-allowed; }
 
-.error-msg { color: #ff5252; margin-top: 10px; }
-.footer-link { margin-top: 15px; }
-.footer-link a { color: #ccff90; }
+.logout-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Responsive Banner */
+@media (max-width: 600px) {
+    .ad-banner {
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+    }
+}
