@@ -1,8 +1,7 @@
 <?php
-require_once "config/db.php";
+require_once "db.php";
 session_start();
 
-// Auth Check
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
@@ -10,7 +9,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Retrieve & Validate Parameters from GET/POST
 $movie_id  = filter_input(INPUT_GET, 'movie_id', FILTER_VALIDATE_INT);
 $show_date = filter_input(INPUT_GET, 'date', FILTER_DEFAULT);
 $showtime  = filter_input(INPUT_GET, 'time', FILTER_DEFAULT);
@@ -28,12 +26,10 @@ if (empty($selected_seats)) {
     exit();
 }
 
-// Pricing Calculation in BDT
 $price_per_seat = 350; // ৳350 per seat
 $seat_count     = count($selected_seats);
 $total_amount   = $seat_count * $price_per_seat;
 
-// Fetch Movie Details
 $stmt = $pdo->prepare("SELECT title, genre, duration_min FROM movies WHERE id = ?");
 $stmt->execute([$movie_id]);
 $movie = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -44,7 +40,6 @@ if (!$movie) {
 
 $error = "";
 
-// Handle Checkout Form Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $card_name   = trim($_POST['card_name'] ?? '');
     $account_num = trim($_POST['account_num'] ?? '');
@@ -55,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $pdo->beginTransaction();
 
-            // Check if seats are already booked
             $placeholders = implode(',', array_fill(0, count($selected_seats), '?'));
             $check_sql = "
                 SELECT seat_no 
@@ -72,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $pdo->rollBack();
                 $error = "Sorry, seat(s) " . implode(', ', $already_booked) . " were just booked by someone else.";
             } else {
-                // Reserve Seats
                 $insert_sql = "
                     INSERT INTO seats (movie_id, show_date, showtime, seat_no, status, booked_by) 
                     VALUES (?, ?, ?, ?, 'booked', ?)
@@ -86,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $pdo->commit();
 
-                // Save session for success ticket statement
                 $_SESSION['last_booking'] = [
                     'movie'   => $movie['title'],
                     'date'    => $show_date,
@@ -95,7 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'amount'  => $total_amount
                 ];
 
-                // Redirect to success page
                 header("Location: success.php");
                 exit();
             }
@@ -114,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - <?= htmlspecialchars($movie['title']) ?></title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         .checkout-grid {
             display: grid;
